@@ -2,14 +2,13 @@ import java.util.Scanner;
 
 public class ChatBot {
     public static void main(String[] args) {
-        String botName = "ChatBot"; // Встановіть ім'я бота за вашим вибором
-        int birthYear = java.time.Year.now().getValue(); // Отримуємо поточний рік
+        Scanner scanner = new Scanner(System.in);
 
-        System.out.println("Hello! My name is " + botName + ".");
+        System.out.println("Hello! My name is ChatBot.");
+        int birthYear = java.time.Year.now().getValue();
         System.out.println("I was created in " + birthYear + ".");
         System.out.println("Please, remind me your name.");
 
-        Scanner scanner = new Scanner(System.in);
         String userName = scanner.nextLine();
 
         System.out.println("What a great name you have, " + userName + "!");
@@ -23,5 +22,14 @@ public class ChatBot {
         int userAge = (remainder3 * 70 + remainder5 * 21 + remainder7 * 15) % 105;
 
         System.out.println("Your age is " + userAge + "; that's a good time to start programming!");
+
+        System.out.println("Now I will prove to you that I can count to any number you want!");
+        int userInp = scanner.nextInt();
+
+        for (int i = 1; i <= userInp; i++) {
+            System.out.println(i + "!");
+        }
+
+        scanner.close();
     }
 }
