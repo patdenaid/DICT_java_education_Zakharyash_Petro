@@ -23,13 +23,43 @@ public class ChatBot {
 
         System.out.println("Your age is " + userAge + "; that's a good time to start programming!");
 
-        System.out.println("Now I will prove to you that I can count to any number you want!");
-        int userInp = scanner.nextInt();
+        System.out.println("Now, let's test your programming knowledge.");
+        System.out.println("I will ask you a few questions. Please choose the correct answer from the options.");
 
-        for (int i = 1; i <= userInp; i++) {
-            System.out.println(i + "!");
+        int score = 0;
+
+        // Запитання і варіанти відповідей
+        String[] questions = {
+                "What is the capital of France?\n1. Berlin\n2. Madrid\n3. Paris\n4. London",
+                "Which programming language is known for its flexibility and readability?\n1. Java\n2. Python\n3. C++\n4. Ruby",
+                "How many bits are in a byte?\n1. 4 bits\n2. 8 bits\n3. 16 bits\n4. 32 bits"
+        };
+
+        // Правильні відповіді
+        int[] correctAnswers = {3, 2, 2};
+
+        for (int i = 0; i < questions.length; i++) {
+            System.out.println("\nQuestion " + (i + 1) + ":");
+            System.out.println(questions[i]);
+
+            int userAnswer = scanner.nextInt();
+
+            if (userAnswer == correctAnswers[i]) {
+                System.out.println("Correct! Good job!");
+                score++;
+            } else {
+                System.out.println("Wrong answer. Try again.");
+            }
         }
 
-        scanner.close();
+        if (score == questions.length) {
+            System.out.println("Congratulations! You got all the questions correct.");
+        } else {
+            System.out.println("You got " + score + " out of " + questions.length + " questions correct.");
+        }
+
+        System.out.println("Goodbye, have a nice day!");
+
+        scanner.close(); // Закриваємо Scanner після використання
     }
 }
