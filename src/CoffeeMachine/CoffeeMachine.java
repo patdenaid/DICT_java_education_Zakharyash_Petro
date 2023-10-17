@@ -23,7 +23,7 @@ public class CoffeeMachine {
                     takeMoney(money);
                     break;
                 case "remaining":
-                    displayResources(water, milk, coffeeBeans, disposableCups, money);
+                    displayRemaining(water, milk, coffeeBeans, disposableCups, money);
                     break;
                 case "exit":
                     return;
@@ -41,10 +41,10 @@ public class CoffeeMachine {
                 makeCoffee(water, 250, coffeeBeans, 16, 4, disposableCups, money);
                 break;
             case "2":
-                makeCoffee(water, 350, milk, 75, 20, 7, money);
+                makeCoffee(water, 350, milk, 75, 7, disposableCups, money);
                 break;
             case "3":
-                makeCoffee(water, 200, milk, 100, 12, 6, money);
+                makeCoffee(water, 200, milk, 100, 6, disposableCups, money);
                 break;
             case "back":
                 break;
@@ -54,13 +54,13 @@ public class CoffeeMachine {
     }
 
     public static void fillMachine(Scanner scanner, int water, int milk, int coffeeBeans, int disposableCups) {
-        System.out.println("Write how many ml of water do you want to add:");
+        System.out.println("Write how many ml of water you want to add:");
         int addedWater = scanner.nextInt();
-        System.out.println("Write how many ml of milk do you want to add:");
+        System.out.println("Write how many ml of milk you want to add:");
         int addedMilk = scanner.nextInt();
-        System.out.println("Write how many grams of coffee beans do you want to add:");
+        System.out.println("Write how many grams of coffee beans you want to add:");
         int addedCoffeeBeans = scanner.nextInt();
-        System.out.println("Write how many disposable cups of coffee do you want to add:");
+        System.out.println("Write how many disposable coffee cups you want to add:");
         int addedDisposableCups = scanner.nextInt();
 
         water += addedWater;
@@ -72,15 +72,6 @@ public class CoffeeMachine {
     public static void takeMoney(int money) {
         System.out.println("I gave you $" + money);
         money = 0;
-    }
-
-    public static void displayResources(int water, int milk, int coffeeBeans, int disposableCups, int money) {
-        System.out.println("The coffee machine has:");
-        System.out.println(water + " of water");
-        System.out.println(milk + " of milk");
-        System.out.println(coffeeBeans + " of coffee beans");
-        System.out.println(disposableCups + " of disposable cups");
-        System.out.println("$" + money + " of money");
     }
 
     public static void makeCoffee(int water, int waterNeeded, int coffeeBeans, int coffeeBeansNeeded, int cost, int disposableCups, int money) {
@@ -101,5 +92,14 @@ public class CoffeeMachine {
             }
             System.out.println("!");
         }
+    }
+
+    public static void displayRemaining(int water, int milk, int coffeeBeans, int disposableCups, int money) {
+        System.out.println("The coffee machine has:");
+        System.out.println(water + " of water");
+        System.out.println(milk + " of milk");
+        System.out.println(coffeeBeans + " of coffee beans");
+        System.out.println(disposableCups + " of disposable cups");
+        System.out.println(money + " of money");
     }
 }
