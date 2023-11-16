@@ -84,44 +84,55 @@ public class TicTacToe {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-        System.out.print("Enter cells: ");
-        String input = scanner.nextLine();
-
         char[][] gameBoard = new char[3][3];
-        int index = 0;
-
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
-                gameBoard[i][j] = input.charAt(index);
-                index++;
+                gameBoard[i][j] = ' ';
             }
         }
 
         printBoard(gameBoard);
 
-        boolean validMove = false;
-        do {
+        boolean xTurn = true;
+
+        while (true) {
+            char symbol = xTurn ? 'X' : 'O';
+
             System.out.print("Enter the coordinates: ");
             try {
+                if (!scanner.hasNextInt()) {
+                    System.out.println("You should enter numbers!");
+                    scanner.nextLine();
+                    continue;
+                }
+
                 int row = scanner.nextInt() - 1;
+
+                if (!scanner.hasNextInt()) {
+                    System.out.println("You should enter numbers!");
+                    scanner.nextLine();
+                    continue;
+                }
+
                 int col = scanner.nextInt() - 1;
 
                 if (isValidMove(gameBoard, row, col)) {
-                    gameBoard[row][col] = 'X';
-                    validMove = true;
+                    gameBoard[row][col] = symbol;
+                    printBoard(gameBoard);
+
+                    if (checkWin(gameBoard, symbol)) {
+                        System.out.println(symbol + " wins");
+                        break;
+                    }
+
+                    analyzeGameState(gameBoard);
+
+                    xTurn = !xTurn; // Перемикання гравців
                 }
             } catch (Exception e) {
-                System.out.println("You should enter numbers!");
+                System.out.println("Invalid input! Try again.");
                 scanner.nextLine();
             }
-        } while (!validMove);
-
-        printBoard(gameBoard);
-
-        if (checkWin(gameBoard, 'X')) {
-            System.out.println("X wins");
-        } else {
-            analyzeGameState(gameBoard);
         }
 
         scanner.close();
